@@ -4,7 +4,7 @@ pragma solidity ^0.8.24;
 /**
  * @title  CloakCashSafe — Secure Vault 🔐
  * @author CloakCash Protocol
- * @notice On-chain secure vault for CloakCash (https://cloakcash.com | https://cloakcash.org).
+ * @notice On-chain secure vault for CloakCash (https://cloakcash.fun).
  *
  *         Users deposit any ERC-20 or native ETH. Assets are held as Uniswap v4 ERC-6909
  *         claims inside PoolManager, decoupling on-chain identity from asset custody.
@@ -23,8 +23,7 @@ pragma solidity ^0.8.24;
  *         Deposit : caller → PoolManager.unlock → ERC-6909 mint → balances[user]
  *         Withdraw: balances[user] → ERC-6909 burn → PoolManager.take → recipient
  *
- * @custom:website  https://cloakcash.com
- * @custom:website  https://cloakcash.org
+ * @custom:website  https://cloakcash.fun
  * @custom:security Report vulnerabilities via the official website.
  */
 
