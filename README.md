@@ -88,29 +88,30 @@ CloakCash/
 ├── contracts/          # Solidity smart contracts
 │   ├── CloakCashVault.sol
 │   └── CloakCashSafe.sol
-├── circuits/          # Noir ZK circuits
+├── circuits/           # Noir ZK circuits
 │   └── withdraw/
-├── frontend/          # React web application
-│   ├── src/
-│   └── public/
-├── scripts/           # Deployment and testing scripts
-└── test/             # Smart contract tests
+├── frontend/           # Pre-built static website (ready to serve)
+│   ├── index.html
+│   ├── assets/
+│   └── zk/            # ZK proving files
+├── scripts/            # Deployment and testing scripts
+└── test/               # Smart contract tests
 ```
 
 ## Technology Stack
 
 - **Smart Contracts**: Solidity, Foundry
 - **Zero-Knowledge**: Noir, Groth16
-- **Frontend**: React, Vite, Wagmi, RainbowKit
+- **Frontend**: Pre-built React app (no build required)
 - **Blockchain**: Robinhood Chain, Uniswap v4
 - **Relayer**: Node.js, Express, Viem
 
 ## Development
 
 ### Prerequisites
-- Node.js 18+
-- Foundry
-- Noir (noirup)
+- Node.js 18+ (for relayer only)
+- Foundry (for contracts)
+- Noir (for circuits)
 
 ### Setup
 ```bash
@@ -118,37 +119,36 @@ CloakCash/
 git clone https://github.com/CloakCashVault/CloakCash
 cd CloakCash
 
-# Install dependencies
-npm install
-cd frontend && npm install
-
 # Compile contracts
 forge build
 
-# Compile circuits
+# Compile circuits (if modifying)
 cd circuits/withdraw
 nargo compile
 
 # Run tests
 forge test
-
-# Start frontend
-cd frontend && npm run dev
 ```
 
 ## Deployment
+
+### Frontend
+The frontend is pre-built and ready to serve:
+```bash
+# Serve with any static file server
+cd frontend
+python3 -m http.server 8000
+# or
+npx serve .
+# or deploy to any static hosting (Vercel, Netlify, Cloudflare Pages, etc.)
+```
+
+Visit http://localhost:8000 to use the app locally.
 
 ### Smart Contracts
 ```bash
 # Deploy to Robinhood Chain
 forge script script/DeployRobinhood.s.sol --rpc-url robinhood --broadcast
-```
-
-### Frontend
-```bash
-cd frontend
-npm run build
-# Deploy dist/ to your hosting provider
 ```
 
 ### Relayer
