@@ -4,7 +4,7 @@ pragma solidity ^0.8.24;
 /**
  * @title  CloakCashVault — Privacy Vault 🎭
  * @author CloakCash Protocol
- * @notice Zero-knowledge privacy vault for CloakCash (https://cloakcash.com | https://cloakcash.org).
+ * @notice Zero-knowledge privacy vault for CloakCash (https://cloakcash.fun).
  *
  *         Users deposit tokens and receive an encrypted ticket. Withdrawal is proven via a
  *         Groth16 ZK proof — no link between depositor and recipient is ever revealed on-chain.
@@ -20,8 +20,7 @@ pragma solidity ^0.8.24;
  *         - Anonymity set: all deposits of the same amount share one set — uniformity
  *           maximises privacy.
  *
- * @custom:website  https://cloakcash.com
- * @custom:website  https://cloakcash.org
+ * @custom:website  https://cloakcash.fun
  */
 
 import {IPoolManager} from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
