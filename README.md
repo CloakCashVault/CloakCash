@@ -85,51 +85,39 @@ Relayer: My Fast Relayer (25ms)  [Change]
 
 ```
 CloakCash/
-├── contracts/          # Solidity smart contracts
-│   ├── CloakCashVault.sol
-│   └── CloakCashSafe.sol
-├── circuits/           # Noir ZK circuits
-│   └── withdraw/
 ├── frontend/           # Pre-built static website (ready to serve)
 │   ├── index.html
 │   ├── assets/
 │   └── zk/            # ZK proving files
-├── scripts/            # Deployment and testing scripts
-└── test/               # Smart contract tests
+├── CloakCashVault.sol  # Main privacy vault contract
+├── CloakCashSafe.sol   # Password-protected vault contract
+├── Groth16Verifier.sol # ZK proof verifier
+└── README.md
 ```
 
 ## Technology Stack
 
-- **Smart Contracts**: Solidity, Foundry
-- **Zero-Knowledge**: Noir, Groth16
+- **Smart Contracts**: Solidity (contracts in root directory)
+- **Zero-Knowledge**: Noir, Groth16 (proving files in frontend/zk/)
 - **Frontend**: Pre-built React app (no build required)
 - **Blockchain**: Robinhood Chain, Uniswap v4
-- **Relayer**: Node.js, Express, Viem
+- **Relayer**: Separate repository - [CloakCashVault/relayer](https://github.com/CloakCashVault/relayer)
 
 ## Development
 
 ### Prerequisites
-- Foundry (for smart contracts)
-- Noir (for ZK circuits, if modifying)
+- Foundry (for smart contract development)
 
 ### Smart Contract Development
+The contracts are in the root directory:
 ```bash
 # Clone repository
 git clone https://github.com/CloakCashVault/CloakCash
 cd CloakCash
 
-# Compile contracts
-forge build
-
-# Run tests
-forge test
-```
-
-### Circuit Development
-```bash
-# Compile circuits (if modifying)
-cd circuits/withdraw
-nargo compile
+# View contracts
+ls *.sol
+# CloakCashVault.sol  CloakCashSafe.sol  Groth16Verifier.sol
 ```
 
 ### Local Testing
@@ -160,16 +148,14 @@ npx serve .
 Visit http://localhost:8000 to use the app.
 
 ### Smart Contracts
-```bash
-# Deploy to Robinhood Chain
-forge script script/DeployRobinhood.s.sol --rpc-url robinhood --broadcast
-```
+The contracts are production-ready. For redeployment, use Foundry with the contracts in the root directory.
 
 ### Relayer
-Want to run your own relayer? See the dedicated repository:
+Want to run your own relayer and earn fees? See the dedicated repository:
 - 📦 **Repository**: [github.com/CloakCashVault/relayer](https://github.com/CloakCashVault/relayer)
 - 🚀 **Quick Start**: [Deployment Guide](https://github.com/CloakCashVault/relayer#readme)
 - ⚙️ **Configuration**: [Config Reference](https://github.com/CloakCashVault/relayer/blob/main/CONFIG.md)
+- 💰 **Revenue**: ~0.2% service fee + gas compensation per transaction
 
 ## Security
 
