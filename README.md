@@ -176,8 +176,8 @@ Want to run your own relayer and earn fees? See the dedicated repository:
 
 - 🌐 Website: [cloakcash.fun](https://cloakcash.fun)
 - 📧 Email: contact@cloakcash.fun
-- 🐦 Twitter: [@CloakCash](https://twitter.com/CloakCash)
-- 💬 Discord: [Join our community](https://discord.gg/cloakcash)
+- 🐦 Twitter: [@CloakCashVault](https://x.com/CloakCashVault)
+- 💬 Telegram: [t.me/CloakCashVault](https://t.me/CloakCashVault)
 
 ## Ecosystem
 
