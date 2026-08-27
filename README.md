@@ -1,16 +1,233 @@
-Brief technical overview:
-CloakCash contracts are fully open source. The core is a ZK-SNARK verifier (Groth16) paired with a Merkle tree deposit registry. Users deposit into the Uniswap v4 PoolManager as ERC-6909 balances; withdrawals require a valid zero-knowledge proof of deposit ownership without revealing which deposit. The nullifier registry prevents double-spends. No admin keys, no upgradeability—just immutable math.
+# CloakCash
 
-Developer-focused (slightly longer):
-All contracts are open source on GitHub. The architecture: deposits create Merkle tree leaves (Poseidon hash of secret + nullifier + amount), stored on-chain. Withdrawals submit a Groth16 proof verifying "I know a secret corresponding to a leaf in this tree" without revealing which leaf. The contract checks the proof, marks the nullifier as spent, and releases funds from the PoolManager. Password-protected Safe Vault adds an Argon2id-derived guardian signature layer on top of ERC-6909 balances.
+Privacy-preserving cryptocurrency transactions using zero-knowledge proofs on Uniswap v4.
 
-One-liner:
-Fully open-source contracts: Groth16 ZK proofs + Poseidon Merkle tree + Uniswap v4 PoolManager integration—no admin keys, immutable deployment.
+🔗 **Live**: [cloakcash.fun](https://cloakcash.fun)
 
-Technical bullet points:
-- ZK Circuit: Groth16 proof system (snarkjs + circom), Poseidon hash, 20-depth Merkle tree
-- On-chain verification: Solidity verifier checks proof + root validity, nullifier uniqueness
-- Funds custody: Uniswap v4 PoolManager (ERC-6909 internal balances), not a separate pool
-- Anonymity set: All deposits of the same token/amount share one Merkle tree
-- Immutable: No Ownable, no proxy, no pause—deploy once, run forever
-- Relayer support: Optional gas-free withdrawals (relayer submits tx, deducts fee from withdrawal)
+## Features
+
+- 🔒 **Zero-Knowledge Privacy** - Break on-chain links between deposit and withdrawal
+- 💰 **Multi-Token Support** - ETH and ERC-20 tokens
+- 🔐 **Password-Protected Vaults** - Optional password-derived guardian for recovery
+- 🌐 **Decentralized Relayers** - No wallet needed for withdrawals
+- ⚡ **Built on Uniswap v4** - Leveraging battle-tested DeFi infrastructure
+
+## Architecture
+
+### Smart Contracts
+- **CloakCashVault** - Main privacy vault with ZK proof verification
+- **CloakCashSafe** - Optional password-protected vault with recovery guardian
+- Deployed on Robinhood Chain (4663)
+
+### Zero-Knowledge Proofs
+- Noir circuit for withdrawal verification
+- Groth16 proof system
+- Merkle tree commitment scheme
+- Nullifier tracking to prevent double-spending
+
+### Relayer Network
+- **Official Relayer**: Maintained by CloakCash team
+- **Custom Relayers**: Anyone can run their own relayer and earn fees
+- **Decentralized**: No single point of failure
+
+## Run Your Own Relayer
+
+Want to earn fees by providing relayer services? It's easy!
+
+### Quick Start
+```bash
+# Clone the relayer repository
+git clone https://github.com/CloakCashVault/relayer
+cd relayer
+
+# Configure
+cp .env.example .env
+nano .env  # Set your RELAYER_PRIVATE_KEY
+
+# Deploy (choose one)
+./start.sh                    # Script
+docker-compose up -d          # Docker
+npm install && node index.js  # Direct
+```
+
+### Revenue Model
+- **Service Fee**: 0.2% of withdrawal amount (configurable)
+- **Gas Compensation**: Actual gas cost reimbursement
+- **Example**: 1 ETH withdrawal ≈ 0.0195 ETH (~$50 USD) revenue
+
+### Configuration
+Customize your relayer:
+```env
+RELAYER_NAME=My Fast Relayer
+RELAYER_DESCRIPTION=Lightning fast privacy transactions
+CONTACT_INFO=contact@example.com
+RELAYER_FEE_BPS=20  # 0.2% fee
+```
+
+### Documentation
+- 📖 [Relayer Repository](https://github.com/CloakCashVault/relayer)
+- 🚀 [Quick Start Guide](https://github.com/CloakCashVault/relayer/blob/main/QUICKSTART.md)
+- ⚙️ [Configuration Reference](https://github.com/CloakCashVault/relayer/blob/main/CONFIG.md)
+
+### User Experience
+Users can add your relayer in the CloakCash frontend:
+1. Go to Withdraw → Relayer mode
+2. Click "Change"
+3. Enter your relayer URL: `https://your-relayer.com:3001`
+4. Save and use
+
+Your relayer will show up with real-time latency:
+```
+Relayer: My Fast Relayer (25ms)  [Change]
+```
+
+## Project Structure
+
+```
+CloakCash/
+├── contracts/          # Solidity smart contracts
+│   ├── CloakCashVault.sol
+│   └── CloakCashSafe.sol
+├── circuits/          # Noir ZK circuits
+│   └── withdraw/
+├── frontend/          # React web application
+│   ├── src/
+│   └── public/
+├── scripts/           # Deployment and testing scripts
+└── test/             # Smart contract tests
+```
+
+## Technology Stack
+
+- **Smart Contracts**: Solidity, Foundry
+- **Zero-Knowledge**: Noir, Groth16
+- **Frontend**: React, Vite, Wagmi, RainbowKit
+- **Blockchain**: Robinhood Chain, Uniswap v4
+- **Relayer**: Node.js, Express, Viem
+
+## Development
+
+### Prerequisites
+- Node.js 18+
+- Foundry
+- Noir (noirup)
+
+### Setup
+```bash
+# Clone repository
+git clone https://github.com/CloakCashVault/CloakCash
+cd CloakCash
+
+# Install dependencies
+npm install
+cd frontend && npm install
+
+# Compile contracts
+forge build
+
+# Compile circuits
+cd circuits/withdraw
+nargo compile
+
+# Run tests
+forge test
+
+# Start frontend
+cd frontend && npm run dev
+```
+
+## Deployment
+
+### Smart Contracts
+```bash
+# Deploy to Robinhood Chain
+forge script script/DeployRobinhood.s.sol --rpc-url robinhood --broadcast
+```
+
+### Frontend
+```bash
+cd frontend
+npm run build
+# Deploy dist/ to your hosting provider
+```
+
+### Relayer
+See [Relayer Repository](https://github.com/CloakCashVault/relayer) for detailed deployment instructions.
+
+## Security
+
+### Audits
+- ⏳ Security audit in progress
+
+### Bug Bounty
+- Report vulnerabilities to: security@cloakcash.fun
+
+### Best Practices
+- ✅ Use official frontend or verify source code
+- ✅ Verify smart contract addresses
+- ✅ Test with small amounts first
+- ✅ Keep your ticket safe (it's your withdrawal key)
+- ✅ Only use trusted relayers
+
+## Community & Support
+
+- 🌐 Website: [cloakcash.fun](https://cloakcash.fun)
+- 📧 Email: contact@cloakcash.fun
+- 🐦 Twitter: [@CloakCash](https://twitter.com/CloakCash)
+- 💬 Discord: [Join our community](https://discord.gg/cloakcash)
+
+## Ecosystem
+
+### Official Services
+- **Website**: [cloakcash.fun](https://cloakcash.fun)
+- **Official Relayer**: Maintained by CloakCash team
+- **Documentation**: Complete guides and API docs
+
+### Community Services
+- **Custom Relayers**: Run by community members
+- **Third-party Integrations**: Build on CloakCash protocol
+- **Open Source Tools**: Contribute to the ecosystem
+
+## Contributing
+
+We welcome contributions! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+### Areas for Contribution
+- 🔧 Protocol improvements
+- 📝 Documentation
+- 🌐 Frontend enhancements
+- 🔒 Security reviews
+- 🚀 Relayer optimizations
+
+## Roadmap
+
+- ✅ Mainnet launch on Robinhood Chain
+- ✅ Multi-token support
+- ✅ Password-protected vaults
+- ✅ Decentralized relayer network
+- 🔄 Multi-chain expansion (Base, Ethereum, etc.)
+- 🔄 Mobile app
+- 🔄 Enhanced privacy features
+- 🔄 DAO governance
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+- [Uniswap v4](https://uniswap.org/) - DeFi infrastructure
+- [Noir](https://noir-lang.org/) - Zero-knowledge proof framework
+- [Foundry](https://getfoundry.sh/) - Smart contract development
+- [Robinhood Chain](https://robinhood.com/crypto) - Layer 2 blockchain
+
+---
+
+**Built with ❤️ by the CloakCash team**
+
+*Making DeFi private, one transaction at a time.*
