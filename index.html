@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloakCash — Private Wallet for Uniswap v4</title>
+    <meta name="description" content="Privacy-preserving wallet built on Uniswap v4 Hooks with ZK proofs" />
+    <link rel="canonical" href="https://www.cloakcash.fun/" />
+    <meta property="og:url" content="https://www.cloakcash.fun/" />
+    <meta property="og:title" content="CloakCash — Private Wallet for Uniswap v4" />
+    <meta property="og:description" content="Privacy-preserving wallet built on Uniswap v4 Hooks with ZK proofs" />
+    <meta property="og:image" content="https://www.cloakcash.fun/favicon-512.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/logo-new.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/favicon-180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { margin: 0; background: #080c0a; font-family: Inter, sans-serif; }
+    #skeleton { display: flex; flex-direction: column; min-height: 100vh; }
+    #sk-nav { height: 60px; background: rgba(12,16,14,0.95); border-bottom: 1px solid rgba(74,222,128,0.08); display: flex; align-items: center; padding: 0 24px; gap: 12px; }
+    #sk-logo { width: 120px; height: 20px; background: rgba(74,222,128,0.08); border-radius: 4px; }
+    #sk-nav-r { margin-left: auto; width: 140px; height: 36px; background: rgba(74,222,128,0.08); border-radius: 8px; }
+    #sk-body { max-width: 480px; margin: 40px auto; padding: 0 16px; }
+    #sk-tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+    .sk-tab { height: 36px; flex: 1; background: rgba(12,16,14,0.9); border-radius: 8px; border: 1px solid rgba(74,222,128,0.08); }
+    #sk-card { background: rgba(14,20,17,0.7); border: 1px solid rgba(74,222,128,0.1); border-radius: 16px; padding: 24px; backdrop-filter: blur(12px); }
+    .sk-line { height: 14px; background: rgba(74,222,128,0.07); border-radius: 4px; margin-bottom: 14px; }
+    .sk-line.short { width: 40%; }
+    #sk-input { height: 52px; background: rgba(8,12,10,0.8); border: 1px solid rgba(74,222,128,0.1); border-radius: 10px; margin-bottom: 16px; }
+    #sk-btn { height: 48px; background: rgba(74,222,128,0.15); border-radius: 10px; }
+    @keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:.9} }
+    #skeleton * { animation: pulse 1.6s ease-in-out infinite; }
+  </style>
+    <script type="module" crossorigin src="/assets/index-CXP2jNmw.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/chunk-Dlc7tRH4.js">
+    <link rel="modulepreload" crossorigin href="/assets/preload-helper-BEFjQwLd.js">
+    <link rel="modulepreload" crossorigin href="/assets/chunk-X4GSACNW-C1eTJs88.js">
+    <link rel="modulepreload" crossorigin href="/assets/base-CC7ZYoho.js">
+    <link rel="modulepreload" crossorigin href="/assets/stringify-CAiu1B0-.js">
+    <link rel="modulepreload" crossorigin href="/assets/utils-IKjBt8O4.js">
+    <link rel="modulepreload" crossorigin href="/assets/encodeFunctionData-DxgCS6CL.js">
+    <link rel="modulepreload" crossorigin href="/assets/formatUnits-CCOSQCtp.js">
+    <link rel="modulepreload" crossorigin href="/assets/createBatchScheduler-Ct74_IxN.js">
+    <link rel="modulepreload" crossorigin href="/assets/isAddressEqual-D0LkwYHo.js">
+    <link rel="modulepreload" crossorigin href="/assets/eventemitter3-CVSATPc6.js">
+    <link rel="modulepreload" crossorigin href="/assets/http-Hms-Z9Vx.js">
+    <link rel="modulepreload" crossorigin href="/assets/hashTypedData-CE4XvOyY.js">
+    <link rel="modulepreload" crossorigin href="/assets/secp256k1-BAdNcVbE.js">
+    <link rel="modulepreload" crossorigin href="/assets/eventemitter3-EeJLv5tE.js">
+    <link rel="modulepreload" crossorigin href="/assets/dijkstra-Bk7MqUKf.js">
+    <link rel="modulepreload" crossorigin href="/assets/tslib.es6-D-upUHQi.js">
+    <link rel="modulepreload" crossorigin href="/assets/dist-M0cmYqaT.js">
+    <link rel="modulepreload" crossorigin href="/assets/config-Bm0Ubw9A.js">
+    <link rel="modulepreload" crossorigin href="/assets/useGuestChain-BA106Dto.js">
+    <link rel="modulepreload" crossorigin href="/assets/useTxHistory-C3YZur1c.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-D9sxVqll.css">
+  </head>
+  <body>
+    <div id="skeleton">
+      <div id="sk-nav"><div id="sk-logo"></div><div id="sk-nav-r"></div></div>
+      <div id="sk-body">
+        <div id="sk-tabs"><div class="sk-tab"></div><div class="sk-tab"></div><div class="sk-tab"></div></div>
+        <div id="sk-card">
+          <div class="sk-line short"></div>
+          <div id="sk-input"></div>
+          <div class="sk-line"></div>
+          <div id="sk-btn"></div>
+        </div>
+      </div>
+    </div>
+    <div id="root"></div>
+  </body>
+</html>

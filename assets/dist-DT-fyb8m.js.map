@@ -1,0 +1,1 @@
+{"version":3,"file":"dist-DT-fyb8m.js","names":[],"sources":["../../node_modules/vite-plugin-node-polyfills/shims/global/dist/index.js"],"sourcesContent":["const global = globalThis || void 0 || self;\n\nexport { global as default, global };\n//# sourceMappingURL=index.js.map\n"],"x_google_ignoreList":[0],"mappings":"wDAAM,EAAS,YAAwB"}

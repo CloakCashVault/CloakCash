@@ -1,0 +1,2 @@
+import{D as e}from"./config-Bm0Ubw9A.js";import{t}from"./formatUnits-CCOSQCtp.js";var n=e(),r=[10,25,50,75,100];function i({balance:e,decimals:i=18,isNative:a,amount:o,setAmount:s}){function c(n){let r=BigInt(e)*BigInt(n)/100n;a&&n===100&&(r=r-BigInt(0x71afd498d0000)>0n?r-BigInt(0x71afd498d0000):r);let o=t(r,i);s(parseFloat(o).toString())}return(0,n.jsx)(`div`,{className:`pct-btns`,children:r.map(e=>(0,n.jsxs)(`button`,{className:`pct-btn`,onClick:()=>c(e),children:[e,`%`]},e))})}export{i as t};
+//# sourceMappingURL=PctBtns-DHPstCyI.js.map
