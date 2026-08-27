@@ -109,11 +109,10 @@ CloakCash/
 ## Development
 
 ### Prerequisites
-- Node.js 18+ (for relayer only)
-- Foundry (for contracts)
-- Noir (for circuits)
+- Foundry (for smart contracts)
+- Noir (for ZK circuits, if modifying)
 
-### Setup
+### Smart Contract Development
 ```bash
 # Clone repository
 git clone https://github.com/CloakCashVault/CloakCash
@@ -122,28 +121,43 @@ cd CloakCash
 # Compile contracts
 forge build
 
+# Run tests
+forge test
+```
+
+### Circuit Development
+```bash
 # Compile circuits (if modifying)
 cd circuits/withdraw
 nargo compile
+```
 
-# Run tests
-forge test
+### Local Testing
+Serve the pre-built frontend locally:
+```bash
+cd frontend
+python3 -m http.server 8000
+# Visit http://localhost:8000
 ```
 
 ## Deployment
 
 ### Frontend
-The frontend is pre-built and ready to serve:
+The frontend is **pre-built and ready to serve** - no build step required:
 ```bash
-# Serve with any static file server
+# Serve locally with any static file server
 cd frontend
 python3 -m http.server 8000
 # or
 npx serve .
-# or deploy to any static hosting (Vercel, Netlify, Cloudflare Pages, etc.)
+
+# Or deploy to any static hosting:
+# - Vercel, Netlify, Cloudflare Pages
+# - GitHub Pages
+# - Any web server (Nginx, Apache, etc.)
 ```
 
-Visit http://localhost:8000 to use the app locally.
+Visit http://localhost:8000 to use the app.
 
 ### Smart Contracts
 ```bash
@@ -152,7 +166,10 @@ forge script script/DeployRobinhood.s.sol --rpc-url robinhood --broadcast
 ```
 
 ### Relayer
-See [Relayer Repository](https://github.com/CloakCashVault/relayer) for detailed deployment instructions.
+Want to run your own relayer? See the dedicated repository:
+- 📦 **Repository**: [github.com/CloakCashVault/relayer](https://github.com/CloakCashVault/relayer)
+- 🚀 **Quick Start**: [Deployment Guide](https://github.com/CloakCashVault/relayer#readme)
+- ⚙️ **Configuration**: [Config Reference](https://github.com/CloakCashVault/relayer/blob/main/CONFIG.md)
 
 ## Security
 
